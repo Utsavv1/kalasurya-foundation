@@ -37,22 +37,22 @@ const GetInvolved = () => {
 
   const donationLevels = [
     {
-      amount: "$25",
+      amount: "₹101",
       impact: "Provides educational materials for 5 women",
       popular: false
     },
     {
-      amount: "$100",
+      amount: "₹501",
       impact: "Sponsors a complete workshop for 20 participants",
       popular: true
     },
     {
-      amount: "$250",
+      amount: "₹1001",
       impact: "Funds environmental program for one community",
       popular: false
     },
     {
-      amount: "$500",
+      amount: "₹5001",
       impact: "Supports comprehensive program development",
       popular: false
     }

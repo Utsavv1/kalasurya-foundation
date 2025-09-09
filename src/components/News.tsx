@@ -27,11 +27,11 @@ const News = () => {
     },
     {
       id: 3,
-      title: "Annual Impact Report 2023 Now Available",
+      title: "Annual Impact Report 2024 Now Available",
       excerpt: "Our comprehensive annual report showcases the significant impact made across all programs, with detailed statistics and community testimonials.",
       category: "Report",
       author: "Research Team",
-      date: "February 20, 2024",
+      date: "February 20, 2025",
       readTime: "5 min read",
       featured: false
     },
