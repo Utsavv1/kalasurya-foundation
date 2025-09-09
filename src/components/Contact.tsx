@@ -56,16 +56,16 @@ const Contact = () => {
       contact: "+91 97277 17975"
     },
     {
-      city: "Surat",
-      address: "Program Center, Near University",
-      type: "Regional Office",
-      contact: "+91 97277 17975"
+      city: "Mumbai",
+      address: "Andheri West",
+      type: "India Chepter",
+      contact: "+91 63551 00803"
     },
     {
-      city: "Vadodara",
-      address: "Community Outreach Center",
-      type: "Field Office",
-      contact: "+91 97277 17975"
+      city: "USA",
+      address: "Dorchester,Bosten",
+      type: "International",
+      contact: "+1 857-397-6316"
     }
   ];
 
