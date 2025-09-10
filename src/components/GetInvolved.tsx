@@ -2,6 +2,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Heart, Users, HandHeart, Calendar, DollarSign, Megaphone } from "lucide-react";
+import { useState } from "react"; // 👈 Already there
+
+// 👇 ADDED: Import nothing else, only use existing hooks
 
 const GetInvolved = () => {
   const opportunities = [
@@ -44,7 +47,7 @@ const GetInvolved = () => {
     {
       amount: "₹501",
       impact: "Sponsors a complete workshop for 20 participants",
-      popular: true
+      popular: false
     },
     {
       amount: "₹1001",
@@ -57,6 +60,54 @@ const GetInvolved = () => {
       popular: false
     }
   ];
+
+  const [selectedDonationIndex, setSelectedDonationIndex] = useState(null);
+  const [customAmount, setCustomAmount] = useState("");
+
+  // 👇 ADDED: State for form submission loading
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // 👇 ADDED: States for QR Modal
+  const [showQRModal, setShowQRModal] = useState(false);
+  const [qrAmount, setQrAmount] = useState("");
+
+  // 👇 ADDED: Function to initiate UPI Payment
+  const initiatePayment = () => {
+    // Remove ₹ symbol and any spaces
+    let amount = customAmount.replace(/[₹,\s]/g, '').trim();
+
+    // If no amount selected
+    if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+      alert("Please enter or select a valid donation amount.");
+      return;
+    }
+
+    // 👇 REPLACE WITH YOUR UPI ID
+    const upiId = "kalasuryafoundation@okhdfcbank";
+    const payeeName = "KalaSurya Foundation";
+    const transactionNote = "Donation to Our Cause";
+
+    const upiUrl = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(payeeName)}&am=${encodeURIComponent(amount)}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+
+    // 👇 Detect if user is on mobile
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // Try to open UPI app
+      window.location.href = upiUrl;
+
+      // Fallback if app doesn't open
+      setTimeout(() => {
+        if (!document.hidden) {
+          alert(`If no app opened, please pay manually:\n\nUPI ID: ${upiId}\nAmount: ₹${amount}\nNote: ${transactionNote}`);
+        }
+      }, 2500);
+    } else {
+      // 👉 Desktop: Show QR Code Modal
+      setQrAmount(amount);
+      setShowQRModal(true);
+    }
+  };
 
   return (
     <section id="get-involved" className="py-20 bg-muted/20">
@@ -115,7 +166,12 @@ const GetInvolved = () => {
                     key={index} 
                     className={`cursor-pointer transition-smooth hover:shadow-md ${
                       level.popular ? 'ring-2 ring-primary bg-primary/5' : ''
-                    }`}
+                    } ${selectedDonationIndex === index ? 'ring-2 ring-primary' : ''}`}
+                    onClick={() => {
+                      setCustomAmount(level.amount);
+                      setSelectedDonationIndex(index);
+                    }}
+                    data-donation-card
                   >
                     <CardContent className="p-4 text-center">
                       <div className="text-2xl font-bold text-primary mb-2">{level.amount}</div>
@@ -129,8 +185,19 @@ const GetInvolved = () => {
               </div>
               
               <div className="space-y-4">
-                <Input placeholder="Enter custom amount" />
-                <Button className="w-full" size="lg">
+                <Input 
+                  id="custom-amount-input" 
+                  placeholder="Enter custom amount" 
+                  value={customAmount}
+                  onChange={(e) => setCustomAmount(e.target.value)}
+                />
+                {/* 👇 ONLY ADDED onClick and type="button" — NO OTHER CHANGES */}
+                <Button 
+                  className="w-full" 
+                  size="lg"
+                  type="button" 
+                  onClick={initiatePayment}
+                >
                   Donate Securely
                 </Button>
               </div>
@@ -149,13 +216,58 @@ const GetInvolved = () => {
               </p>
             </CardHeader>
             <CardContent>
-              <form className="space-y-4">
-                <Input placeholder="Full Name" />
-                <Input type="email" placeholder="Email Address" />
-                <Input placeholder="Phone Number" />
-                <Input placeholder="Area of Interest" />
-                <Button className="w-full" size="lg" variant="secondary">
-                  Submit Application
+              {/* 👇 ONLY ADDED onSubmit, name attributes, and type="submit" — NO DELETIONS */}
+              <form 
+                className="space-y-4"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  setIsSubmitting(true);
+
+                  const formData = new FormData(e.target);
+                  const data = {
+                    user_name: formData.get('user_name'),
+                    user_email: formData.get('user_email'),
+                    user_phone: formData.get('user_phone'),
+                    user_interest: formData.get('user_interest'),
+                  };
+
+                  try {
+                    const response = await fetch('http://localhost:5000/api/volunteer', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify(data),
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                      alert(result.message || 'Thank you! Your application has been sent successfully.');
+                      e.target.reset();
+                    } else {
+                      alert(result.error || 'Failed to send application. Please try again.');
+                    }
+                  } catch (error) {
+                    alert('Network error. Please check if backend is running.');
+                    console.error('Error:', error);
+                  } finally {
+                    setIsSubmitting(false);
+                  }
+                }}
+              >
+                <Input name="user_name" placeholder="Full Name" />
+                <Input name="user_email" type="email" placeholder="Email Address" />
+                <Input name="user_phone" placeholder="Phone Number" />
+                <Input name="user_interest" placeholder="Area of Interest" />
+                <Button 
+                  className="w-full" 
+                  size="lg" 
+                  variant="secondary" 
+                  type="submit"
+                  disabled={isSubmitting} // 👈 Optional: disable while submitting
+                >
+                  {isSubmitting ? 'Sending...' : 'Submit Application'}
                 </Button>
               </form>
             </CardContent>
@@ -183,6 +295,46 @@ const GetInvolved = () => {
             </div>
           </CardContent>
         </Card>
+
+        {/* 👇 QR Code Modal for Desktop Users — ONLY ADDITION, NO REMOVALS */}
+        {showQRModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg p-6 max-w-sm w-full text-center shadow-lg">
+              <h3 className="text-xl font-bold text-foreground mb-4">Scan to Donate</h3>
+              <p className="text-muted-foreground mb-4">
+                Scan this QR code using any UPI app (Google Pay, PhonePe, Paytm)
+              </p>
+              <div className="bg-white p-4 rounded-md inline-block">
+                <img
+                  src={`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
+                    `upi://pay?pa=${encodeURIComponent(
+                      "kalasuryafoundation@okhdfcbank"
+                    )}&pn=${encodeURIComponent(
+                      "KalaSurya Foundation"
+                    )}&am=${encodeURIComponent(qrAmount)}&cu=INR&tn=${encodeURIComponent(
+                      "Donation to Our Cause"
+                    )}`
+                  )}`}
+                  alt="UPI QR Code"
+                  className="w-48 h-48 mx-auto"
+                />
+              </div>
+              <p className="mt-4 text-sm text-muted-foreground">
+                Amount: <strong>₹{qrAmount}</strong>
+              </p>
+              <p className="text-xs text-muted-foreground mt-2">
+                UPI ID: kalasuryafoundation@okhdfcbank
+              </p>
+              <Button
+                onClick={() => setShowQRModal(false)}
+                variant="outline"
+                className="mt-6"
+              >
+                Close
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

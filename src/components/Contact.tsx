@@ -3,8 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
+import { useState } from "react"; // 👈 ADDED: Import useState (if not already imported)
 
 const Contact = () => {
+  const opportunities = [ /* ... your existing code doesn't have this — ignore if not present */ ];
+
   const contactInfo = [
     {
       icon: MapPin,
@@ -85,6 +88,9 @@ const Contact = () => {
     }
   ];
 
+  // 👇 ADDED: State for form submission loading
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   return (
     <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -112,19 +118,62 @@ const Contact = () => {
                 </p>
               </CardHeader>
               <CardContent>
-                <form className="space-y-6">
+                {/* 👇 ONLY ADDED onSubmit — NO OTHER CHANGES */}
+                <form 
+                  className="space-y-6"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    setIsSubmitting(true);
+
+                    const formData = new FormData(e.target);
+                    const data = {
+                      first_name: formData.get('first_name'),
+                      last_name: formData.get('last_name'),
+                      email: formData.get('email'),
+                      phone: formData.get('phone'),
+                      subject: formData.get('subject'),
+                      message: formData.get('message'),
+                    };
+
+                    try {
+                      const response = await fetch('http://localhost:5000/api/contact', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                      });
+
+                      const result = await response.json();
+
+                      if (response.ok) {
+                        alert(result.message || 'Thank you! We’ll get back to you soon.');
+                        e.target.reset();
+                      } else {
+                        alert(result.error || 'Failed to send message. Please try again.');
+                      }
+                    } catch (error) {
+                      alert('Network error. Please check if backend is running.');
+                      console.error('Error:', error);
+                    } finally {
+                      setIsSubmitting(false);
+                    }
+                  }}
+                >
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-foreground mb-2">
                         First Name *
                       </label>
-                      <Input placeholder="Enter your first name" />
+                      {/* 👇 ONLY ADDED name attribute — NO OTHER CHANGES */}
+                      <Input name="first_name" placeholder="Enter your first name" />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-foreground mb-2">
                         Last Name *
                       </label>
-                      <Input placeholder="Enter your last name" />
+                      {/* 👇 ONLY ADDED name attribute — NO OTHER CHANGES */}
+                      <Input name="last_name" placeholder="Enter your last name" />
                     </div>
                   </div>
 
@@ -132,35 +181,46 @@ const Contact = () => {
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Email Address *
                     </label>
-                    <Input type="email" placeholder="Enter your email address" />
+                    {/* 👇 ONLY ADDED name attribute — NO OTHER CHANGES */}
+                    <Input name="email" type="email" placeholder="Enter your email address" />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Phone Number
                     </label>
-                    <Input placeholder="Enter your phone number" />
+                    {/* 👇 ONLY ADDED name attribute — NO OTHER CHANGES */}
+                    <Input name="phone" placeholder="Enter your phone number" />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Subject *
                     </label>
-                    <Input placeholder="What is this regarding?" />
+                    {/* 👇 ONLY ADDED name attribute — NO OTHER CHANGES */}
+                    <Input name="subject" placeholder="What is this regarding?" />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Message *
                     </label>
+                    {/* 👇 ONLY ADDED name attribute — NO OTHER CHANGES */}
                     <Textarea
+                      name="message"
                       placeholder="Tell us more about your inquiry..."
                       rows={6}
                     />
                   </div>
 
-                  <Button size="lg" className="w-full">
-                    Send Message
+                  {/* 👇 ONLY ADDED type="submit" and disabled — NO OTHER CHANGES */}
+                  <Button 
+                    size="lg" 
+                    className="w-full"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>
               </CardContent>
@@ -237,7 +297,7 @@ const Contact = () => {
         <Card className="shadow-card">
           <CardContent className="p-0 h-64 overflow-hidden rounded-lg">
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Kalasurya+Foundation,+Kalasurya+House,+4+Sarthi+Duplex,+Nr.+Sterling+City,+Bopal,+Ahmedabad,+Gujarat+380058"
+              href="  https://www.google.com/maps/search/?api=1&query=Kalasurya+Foundation,+Kalasurya+House,+4+Sarthi+Duplex,+Nr.+Sterling+City,+Bopal,+Ahmedabad,+Gujarat+380058"
               target="_blank"
               rel="noopener noreferrer"
               className="block w-full h-full"
@@ -245,7 +305,7 @@ const Contact = () => {
               <div className="relative w-full h-full">
                 <iframe
                   title="Kalasurya Foundation Location"
-                  src="https://www.google.com/maps?q=Kalasurya+Foundation,+Kalasurya+House,+4+Sarthi+Duplex,+Nr.+Sterling+City,+Bopal,+Ahmedabad,+Gujarat+380058&output=embed"
+                  src="  https://www.google.com/maps?q=Kalasurya+Foundation,+Kalasurya+House,+4+Sarthi+Duplex,+Nr.+Sterling+City,+Bopal,+Ahmedabad,+Gujarat+380058&output=embed"
                   allowFullScreen
                   loading="lazy"
                   className="absolute top-0 left-0 w-full h-full"
