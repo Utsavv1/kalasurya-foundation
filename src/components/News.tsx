@@ -96,17 +96,17 @@ const News = () => {
               .filter(item => item.featured)
               .map(article => (
                 <Card key={article.id} className="shadow-card mb-8 overflow-hidden">
-                  <div className="bg-gradient-hero p-6 text-primary-foreground">
+                  <div className="bg-gradient-hero p-6" style={{ color: "#847062" }}>
                     <Badge variant="secondary" className="mb-4">
                       Featured Story
                     </Badge>
                     <CardTitle className="text-2xl font-bold mb-3">
                       {article.title}
                     </CardTitle>
-                    <p className="text-primary-foreground/90 mb-4">
+                    <p className="mb-4">
                       {article.excerpt}
                     </p>
-                    <div className="flex items-center text-sm text-primary-foreground/80">
+                    <div className="flex items-center text-sm" style={{ color: "#847062" }}>
                       <User className="w-4 h-4 mr-1" />
                       <span className="mr-4">{article.author}</span>
                       <Calendar className="w-4 h-4 mr-1" />
