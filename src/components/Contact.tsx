@@ -10,18 +10,18 @@ const Contact = () => {
       icon: MapPin,
       title: "Our Address",
       details: [
-        "Kalasurya Foundation",
-        "Community Center Building",
-        "Ahmedabad, Gujarat 380009",
-        "India"
+        "Kalasurya Foundation Kalasurya House",
+        "4 Sarthi Duplex",
+        "Nr. Sterling City",
+        "Bopal, Ahmedabad, Gujarat 380058"
       ]
     },
     {
       icon: Phone,
       title: "Phone & WhatsApp",
       details: [
-        <a href="tel:+919727717975" key="phone1" className="text-primary hover:underline">
-        +91 97277 17975
+        <a href="tel:+919727717975" key="phone1" className="text-#847062 hover:underline">
+          +91 97277 17975
         </a>,
         "Available for calls and messages",
         "Mon - Fri: 9:00 AM - 6:00 PM",
@@ -32,10 +32,18 @@ const Contact = () => {
       icon: Mail,
       title: "Email Us",
       details: [
-        "info@kalasuryafoundation.org",
-        "programs@kalasuryafoundation.org",
-        "volunteer@kalasuryafoundation.org",
-        "media@kalasuryafoundation.org"
+        <a href="mailto:info@kalasuryafoundation.org" key="email1" className="text-#847062 hover:underline">
+          info@kalasuryafoundation.org
+        </a>,
+        <a href="mailto:programs@kalasuryafoundation.org" key="email2" className="text-#847062 hover:underline">
+          programs@kalasuryafoundation.org
+        </a>,
+        <a href="mailto:volunteer@kalasuryafoundation.org" key="email3" className="text-#847062 hover:underline">
+          volunteer@kalasuryafoundation.org
+        </a>,
+        <a href="mailto:media@kalasuryafoundation.org" key="email4" className="text-#847062 hover:underline">
+          media@kalasuryafoundation.org
+        </a>
       ]
     },
     {
@@ -55,19 +63,25 @@ const Contact = () => {
       city: "Ahmedabad",
       address: "Main Office, Community Center",
       type: "Headquarters",
-      contact: "+91 97277 17975"
+      contact: <a href="tel:+919727717975" key="phone1" className="text-#847062 hover:underline">
+        +91 97277 17975
+      </a>,
     },
     {
       city: "Mumbai",
       address: "Andheri West",
       type: "India Chepter",
-      contact: "+91 63551 00803"
+      contact: <a href="tel:++91 63551 00803" key="phone1" className="text-#847062 hover:underline">
+        +91 63551 00803
+      </a>,
     },
     {
       city: "USA",
       address: "Dorchester,Bosten",
       type: "International",
-      contact: "+1 857-397-6316"
+      contact: <a href="tel:+1 857-397-6316" key="phone1" className="text-#847062 hover:underline">
+        +1 857-397-6316
+      </a>,
     }
   ];
 
@@ -79,7 +93,7 @@ const Contact = () => {
             Get in Touch
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We'd love to hear from you. Whether you have questions about our programs, 
+            We'd love to hear from you. Whether you have questions about our programs,
             want to volunteer, or need support, we're here to help and connect.
           </p>
         </div>
@@ -113,38 +127,38 @@ const Contact = () => {
                       <Input placeholder="Enter your last name" />
                     </div>
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Email Address *
                     </label>
                     <Input type="email" placeholder="Enter your email address" />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Phone Number
                     </label>
                     <Input placeholder="Enter your phone number" />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Subject *
                     </label>
                     <Input placeholder="What is this regarding?" />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
                       Message *
                     </label>
-                    <Textarea 
+                    <Textarea
                       placeholder="Tell us more about your inquiry..."
                       rows={6}
                     />
                   </div>
-                  
+
                   <Button size="lg" className="w-full">
                     Send Message
                   </Button>
@@ -176,7 +190,7 @@ const Contact = () => {
                 </CardContent>
               </Card>
             ))}
-            
+
             {/* Quick Actions */}
             <Card className="shadow-card bg-gradient-card">
               <CardContent className="p-6 text-center">
@@ -185,7 +199,11 @@ const Contact = () => {
                 <p className="text-sm text-muted-foreground mb-4">
                   For urgent matters or immediate assistance, reach out via WhatsApp.
                 </p>
-                <Button variant="secondary" className="w-full">
+                <Button
+                  variant="secondary"
+                  className="w-full"
+                  onClick={() => window.open("https://wa.me/919727717975?text=Hello%20Kalasurya%20Foundation!", "_blank")}
+                >
                   WhatsApp Us
                 </Button>
               </CardContent>
@@ -215,16 +233,30 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Map Placeholder */}
+        {/* Map Placeholder with Google Maps as background */}
         <Card className="shadow-card">
-          <CardContent className="p-0">
-            <div className="h-64 bg-muted/50 rounded-lg flex items-center justify-center">
-              <div className="text-center text-muted-foreground">
-                <MapPin className="w-12 h-12 mx-auto mb-4" />
-                <p className="text-lg font-medium">Interactive Map</p>
-                <p className="text-sm">Visit us at our main office in Ahmedabad</p>
+          <CardContent className="p-0 h-64 overflow-hidden rounded-lg">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Kalasurya+Foundation,+Kalasurya+House,+4+Sarthi+Duplex,+Nr.+Sterling+City,+Bopal,+Ahmedabad,+Gujarat+380058"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full h-full"
+            >
+              <div className="relative w-full h-full">
+                <iframe
+                  title="Kalasurya Foundation Location"
+                  src="https://www.google.com/maps?q=Kalasurya+Foundation,+Kalasurya+House,+4+Sarthi+Duplex,+Nr.+Sterling+City,+Bopal,+Ahmedabad,+Gujarat+380058&output=embed"
+                  allowFullScreen
+                  loading="lazy"
+                  className="absolute top-0 left-0 w-full h-full"
+                ></iframe>
+                <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center text-white p-4">
+                  <MapPin className="w-12 h-12 mb-2" />
+                  <p className="text-lg font-semibold">Interactive Map</p>
+                  <p className="text-sm">Visit us at our main office in Bopal, Ahmedabad</p>
+                </div>
               </div>
-            </div>
+            </a>
           </CardContent>
         </Card>
       </div>
