@@ -1,8 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import healthEducationImage from "@/assets/health-education.jpg";
-import environmentalImage from "@/assets/environmental-programs.jpg";
+import healthEducationImage from "@/assets/Menstrual-Revolution_Kalasurya-Foundation.jpg";
+import environmentalImage from "@/assets/plantation.jpeg";
+import CommunityDevelopment from "@/assets/health-education.jpg"
 
 const Programs = () => {
   const programs = [
@@ -41,7 +42,7 @@ const Programs = () => {
       title: "Women's Empowerment Workshops",
       category: "Community Development",
       description: "Skill-building and leadership development programs designed to enhance women's economic opportunities and decision-making capabilities within their communities.",
-      image: healthEducationImage,
+      image: CommunityDevelopment,
       impact: "2,000+ women trained",
       status: "Growing",
       features: [

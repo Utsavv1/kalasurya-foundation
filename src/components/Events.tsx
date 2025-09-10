@@ -7,38 +7,50 @@ const Events = () => {
   const upcomingEvents = [
     {
       id: 1,
-      title: "Women's Health Workshop Series",
-      date: "March 15-17, 2024",
+      title: "Girl's Menstrual Health Seminar Series",
+      date: "September 17 to 21, 2025",
       time: "9:00 AM - 5:00 PM",
-      location: "Community Center, Ahmedabad",
-      description: "Comprehensive three-day workshop covering menstrual health, nutrition, and reproductive wellness.",
-      capacity: "50 participants",
+      location: "Dev Bhumi,Dwarka and Porbander",
+      description: "Comprehensive five-days workshop covering menstrual health, nutrition, and reproductive wellness.",
+      capacity: "1200+ participants",
       status: "Registration Open",
       type: "Workshop",
       featured: true
     },
     {
       id: 2,
-      title: "Environmental Action Rally",
-      date: "April 22, 2024",
-      time: "7:00 AM - 12:00 PM",
-      location: "Multiple locations across Gujarat",
-      description: "Join our Earth Day celebration with tree planting, cleanup drives, and awareness campaigns.",
-      capacity: "200+ volunteers",
+      title: "Joint Family Award Ceremoney Season - 7",
+      date: "May 10, 2026",
+      time: "3:00 PM - 6:00 PM",
+      location: "Tagor Hall,Ahmedabad",
+      description: "If you're living in joint family with more then 20 members register your name and we will falicitate your family.",
+      capacity: "45 family",
       status: "Registration Open",
-      type: "Rally",
+      type: "Award Ceremoney",
       featured: false
     },
     {
       id: 3,
-      title: "Community Leadership Summit",
-      date: "May 10, 2024",
-      time: "10:00 AM - 4:00 PM",
-      location: "Conference Hall, Surat",
-      description: "Annual gathering of community leaders, volunteers, and stakeholders to plan future initiatives.",
-      capacity: "100 leaders",
+      title: "Bharatnatyam Dikshant Samaroh 2025",
+      date: "December 21, 2025",
+      time: "5:00 PM - 9:00 PM",
+      location: "Bhagwat Vidhyapith Sola, Ahmedabad",
+      description: "Nine disciples of our foundation will present their Arangetram,performing non-stop for 2 hours.",
+      capacity: "1700 Audiance",
       status: "Invitation Only",
-      type: "Summit",
+      type: "Bharatnatyam Nrity",
+      featured: false
+    },
+    {
+      id: 4,
+      title: "Senior Citizen's Picnic",
+      date: "November 4, 2025",
+      time: "5:00 AM - 1:00 AM",
+      location: "Statue Of Unity",
+      description: "One day picnic with senior citizens to entertain them.",
+      capacity: "70 Persons",
+      status: "Registration Open",
+      type: "Picnic",
       featured: false
     }
   ];
@@ -64,6 +76,27 @@ const Events = () => {
       participants: "75+",
       impact: "50 new volunteers trained",
       description: "Comprehensive training program for new volunteers joining our programs."
+    },
+    {
+      title: "Joint Family Award Ceremoney",
+      date: "May 12, 2024",
+      participants: "2000+",
+      impact: "75 families falicitated",
+      description: "We organize joint family award ceremoney every year on mother's day.Till date,we falicitated 75 joint families."
+    },
+    {
+      title: "Ignite Learning Movement ",
+      date: "2020 - 2024",
+      participants: "500+",
+      impact: "200 kids and 300 adults were educated ",
+      description: "We have been educating children,domestic helpers and auto drivers from slum areas,empowering them with the literacy."
+    }
+    ,{
+      title: "Skill Training Program",
+      date: "2021 - 2025",
+      participants: "1500+",
+      impact: "1500+ Womens Empower",
+      description: "We provide skill training in all areas such as heavy motor driving,stitching,acting,hair & makeup artistry and more to empower women."
     }
   ];
 
