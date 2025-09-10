@@ -46,8 +46,8 @@ const Footer = () => {
             Subscribe to receive updates on our programs, impact stories, and ways to get involved in creating positive change.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input 
-              type="email" 
+            <input
+              type="email"
               placeholder="Enter your email address"
               className="flex-1 px-4 py-2 rounded-md text-foreground"
             />
@@ -67,10 +67,10 @@ const Footer = () => {
               Kalasurya Foundation
             </h3>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Empowering communities through health education, environmental consciousness, 
+              Empowering communities through health education, environmental consciousness,
               and sustainable development programs that create lasting positive change.
             </p>
-            
+
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center text-sm text-muted-foreground">
@@ -79,11 +79,15 @@ const Footer = () => {
               </div>
               <div className="flex items-center text-sm text-muted-foreground">
                 <Phone className="w-4 h-4 mr-2 text-primary" />
-                +91 97277 17975
+                <a href="tel:+919727717975" key="phone1" className="text-#847062 hover:underline">
+                  +91 97277 17975
+                </a>
               </div>
               <div className="flex items-center text-sm text-muted-foreground">
                 <Mail className="w-4 h-4 mr-2 text-primary" />
-                info@kalasuryafoundation.org
+                <a href="mailto:info@kalasuryafoundation.org" key="email1" className="text-#847062 hover:underline">
+                  info@kalasuryafoundation.org
+                </a>
               </div>
             </div>
 
@@ -173,7 +177,7 @@ const Footer = () => {
             <div className="text-sm text-muted-foreground">
               © 2024 Kalasurya Foundation. All rights reserved.
             </div>
-            
+
             <div className="flex items-center space-x-6 text-sm">
               <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
                 Privacy Policy
@@ -185,7 +189,7 @@ const Footer = () => {
                 Code of Conduct
               </a>
             </div>
-            
+
             <div className="text-sm text-muted-foreground">
               Made with ❤️ for community empowerment
             </div>
