@@ -20,7 +20,9 @@ const Contact = () => {
       icon: Phone,
       title: "Phone & WhatsApp",
       details: [
-        "+91 97277 17975",
+        <a href="tel:+919727717975" key="phone1" className="text-primary hover:underline">
+        +91 97277 17975
+        </a>,
         "Available for calls and messages",
         "Mon - Fri: 9:00 AM - 6:00 PM",
         "Sat: 9:00 AM - 2:00 PM"
