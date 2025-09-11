@@ -37,3 +37,7 @@ EMAIL_PASS=your-generated-app-password     # https://myaccount.google.com/apppas
 
 # Admin email to receive forms
 ADMIN_EMAIL=admin@kalasuryafoundation.org
+.vercel
+
+# Local Netlify folder
+.netlify

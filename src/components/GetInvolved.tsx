@@ -218,58 +218,59 @@ const GetInvolved = () => {
             <CardContent>
               {/* 👇 ONLY ADDED onSubmit, name attributes, and type="submit" — NO DELETIONS */}
               <form 
-                className="space-y-4"
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  setIsSubmitting(true);
+  className="space-y-4"
+  onSubmit={async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-                  const formData = new FormData(e.target);
-                  const data = {
-                    user_name: formData.get('user_name'),
-                    user_email: formData.get('user_email'),
-                    user_phone: formData.get('user_phone'),
-                    user_interest: formData.get('user_interest'),
-                  };
+    const formData = new FormData(e.target);
+    const data = {
+      user_name: formData.get('user_name'),
+      user_email: formData.get('user_email'),
+      user_phone: formData.get('user_phone'),
+      user_interest: formData.get('user_interest'),
+    };
 
-                  try {
-                    const response = await fetch('http://localhost:5000/api/volunteer', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify(data),
-                    });
+    try {
+      // ✅ UPDATED URL for Netlify serverless function
+      const response = await fetch('/.netlify/functions/volunteer', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-                    const result = await response.json();
+      const result = await response.json();
 
-                    if (response.ok) {
-                      alert(result.message || 'Thank you! Your application has been sent successfully.');
-                      e.target.reset();
-                    } else {
-                      alert(result.error || 'Failed to send application. Please try again.');
-                    }
-                  } catch (error) {
-                    alert('Network error. Please check if backend is running.');
-                    console.error('Error:', error);
-                  } finally {
-                    setIsSubmitting(false);
-                  }
-                }}
-              >
-                <Input name="user_name" placeholder="Full Name" />
-                <Input name="user_email" type="email" placeholder="Email Address" />
-                <Input name="user_phone" placeholder="Phone Number" />
-                <Input name="user_interest" placeholder="Area of Interest" />
-                <Button 
-                  className="w-full" 
-                  size="lg" 
-                  variant="secondary" 
-                  type="submit"
-                  disabled={isSubmitting} // 👈 Optional: disable while submitting
-                >
-                  {isSubmitting ? 'Sending...' : 'Submit Application'}
-                </Button>
-              </form>
+      if (response.ok) {
+        alert(result.message || 'Thank you! Your application has been sent successfully.');
+        e.target.reset();
+      } else {
+        alert(result.error || 'Failed to send application. Please try again.');
+      }
+    } catch (error) {
+      alert('Network error. Please check if backend is running.');
+      console.error('Error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }}
+>
+  <Input name="user_name" placeholder="Full Name" />
+  <Input name="user_email" type="email" placeholder="Email Address" />
+  <Input name="user_phone" placeholder="Phone Number" />
+  <Input name="user_interest" placeholder="Area of Interest" />
+  <Button 
+    className="w-full" 
+    size="lg" 
+    variant="secondary" 
+    type="submit"
+    disabled={isSubmitting} // 👈 Optional: disable while submitting
+  >
+    {isSubmitting ? 'Sending...' : 'Submit Application'}
+  </Button>
+</form>
             </CardContent>
           </Card>
         </div>
