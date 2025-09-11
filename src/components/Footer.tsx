@@ -39,17 +39,17 @@ const Footer = () => {
       {/* Newsletter CTA */}
       <div className="bg-gradient-hero py-12">
         <div className="container mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold text-primary-foreground mb-4">
+          <h3 className="text-2xl font-bold text-gray-900 mb-4">
             Stay Connected with Our Mission
           </h3>
-          <p className="text-primary-foreground/90 mb-6 max-w-2xl mx-auto">
+          <p className="text-gray-900 mb-6 max-w-2xl mx-auto">
             Subscribe to receive updates on our programs, impact stories, and ways to get involved in creating positive change.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Enter your email address"
-              className="flex-1 px-4 py-2 rounded-md text-foreground"
+              className="flex-1 px-4 py-2 rounded-md text-foreground border border-gray-300 focus:border-gray-500 focus:outline-none"
             />
             <Button variant="secondary" size="lg">
               Subscribe
