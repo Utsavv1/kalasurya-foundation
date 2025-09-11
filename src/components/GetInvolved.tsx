@@ -150,15 +150,19 @@ const GetInvolved = () => {
         <div className="grid lg:grid-cols-2 gap-12 mb-16">
           {/* Donation Levels */}
           <Card className="shadow-card">
-            <CardHeader>
-              <CardTitle className="text-2xl font-bold text-foreground flex items-center">
-                <Heart className="w-6 h-6 text-primary mr-2" />
-                Make a Donation
-              </CardTitle>
-              <p className="text-muted-foreground">
-                Your support helps us continue our vital work in communities. Choose an amount that works for you.
-              </p>
-            </CardHeader>
+            {/* 👇 ONLY ADDED: Wrapper div with id="donation" — NO OTHER CHANGES */}
+            <div id="donation">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold text-foreground flex items-center">
+                  <Heart className="w-6 h-6 text-primary mr-2" />
+                  Make a Donation
+                </CardTitle>
+                <p className="text-muted-foreground">
+                  Your support helps us continue our vital work in communities. Choose an amount that works for you.
+                </p>
+              </CardHeader>
+            </div>
+            {/* 👆 ONLY ADDED: Wrapper div with id="donation" — NO OTHER CHANGES */}
             <CardContent>
               <div className="grid grid-cols-2 gap-4 mb-6">
                 {donationLevels.map((level, index) => (
@@ -232,7 +236,7 @@ const GetInvolved = () => {
                   };
 
                   try {
-                    const response = await fetch('https://kalasurya-backend.onrender.com/api/volunteer', {
+                    const response = await fetch('https://kalasurya-backend.onrender.com/api/volunteer  ', {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',

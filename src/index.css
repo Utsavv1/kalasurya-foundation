@@ -120,6 +120,10 @@ All colors MUST be HSL.
     line-height: 1.2;
   }
 
+  html {
+  scroll-behavior: smooth;
+  }
+
   .gradient-hero {
     background: var(--gradient-hero);
   }

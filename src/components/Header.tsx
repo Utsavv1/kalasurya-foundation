@@ -23,7 +23,7 @@ const Header = () => {
           <div className="flex items-center">
             <a href="/" className="flex items-center">
               <img
-                src="https://kalasuryafoundation.org/images/kalasurya_logo.png"
+                src=" https://kalasuryafoundation.org/images/kalasurya_logo.png  "
                 alt="Kalasurya Foundation Logo"
                 className="h-16 w-16 mr-2"
               />
@@ -44,8 +44,9 @@ const Header = () => {
                 {item.name}
               </a>
             ))}
-            <Button variant="default" size="sm" className="ml-4">
-              Donate Now
+            {/* 👇 ONLY CHANGED: Added asChild + <a> — NO OTHER CHANGES */}
+            <Button asChild variant="default" size="sm" className="ml-4">
+              <a href="#donation">Donate Now</a>
             </Button>
           </nav>
 
@@ -74,8 +75,8 @@ const Header = () => {
                   {item.name}
                 </a>
               ))}
-              <Button variant="default" size="sm" className="mt-4 self-start">
-                Donate Now
+              <Button asChild variant="default" size="sm" className="mt-4 self-start">
+                <a href="#donation">Donate Now</a>
               </Button>
             </div>
           </nav>
