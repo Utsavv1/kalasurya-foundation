@@ -232,7 +232,7 @@ const GetInvolved = () => {
                   };
 
                   try {
-                    const response = await fetch('http://localhost:5000/api/volunteer', {
+                    const response = await fetch('https://kalasurya-backend.onrender.com/api/volunteer', {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',
