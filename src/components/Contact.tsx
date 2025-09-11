@@ -125,7 +125,7 @@ const Contact = () => {
                     e.preventDefault();
                     setIsSubmitting(true);
 
-                    const formData = new FormData(e.target);
+                    const formData = new FormData(e.target as HTMLFormElement);
                     const data = {
                       first_name: formData.get('first_name'),
                       last_name: formData.get('last_name'),
@@ -148,7 +148,7 @@ const Contact = () => {
 
                       if (response.ok) {
                         alert(result.message || 'Thank you! We’ll get back to you soon.');
-                        e.target.reset();
+                        (e.target as HTMLFormElement).reset();
                       } else {
                         alert(result.error || 'Failed to send message. Please try again.');
                       }
