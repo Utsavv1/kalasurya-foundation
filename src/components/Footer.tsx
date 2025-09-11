@@ -191,7 +191,7 @@ const Footer = () => {
             </div>
 
             <div className="text-sm text-muted-foreground">
-              Made with ❤️ for community empowerment
+              Made with ❤️ by GFuture Tech Pvt Ltd
             </div>
           </div>
         </div>

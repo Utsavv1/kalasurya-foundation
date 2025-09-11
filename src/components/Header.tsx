@@ -25,7 +25,7 @@ const Header = () => {
               <img
                 src=" https://kalasuryafoundation.org/images/kalasurya_logo.png  "
                 alt="Kalasurya Foundation Logo"
-                className="h-16 w-16 mr-2"
+                className="h-12 w-12  mr-2"
               />
               <h1 className="text-2xl font-bold text-primary">
                 Kalasurya Foundation
