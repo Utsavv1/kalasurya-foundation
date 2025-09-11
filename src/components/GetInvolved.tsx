@@ -77,7 +77,7 @@ const GetInvolved = () => {
     let amount = customAmount.replace(/[₹,\s]/g, '').trim();
 
     // If no amount selected
-    if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+    if (!amount || isNaN(Number(amount)) || parseFloat(amount) <= 0) {
       alert("Please enter or select a valid donation amount.");
       return;
     }
@@ -223,7 +223,7 @@ const GetInvolved = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const formData = new FormData(e.target);
+    const formData = new FormData(e.target as HTMLFormElement);
     const data = {
       user_name: formData.get('user_name'),
       user_email: formData.get('user_email'),
@@ -245,7 +245,7 @@ const GetInvolved = () => {
 
       if (response.ok) {
         alert(result.message || 'Thank you! Your application has been sent successfully.');
-        e.target.reset();
+        (e.target as HTMLFormElement).reset();
       } else {
         alert(result.error || 'Failed to send application. Please try again.');
       }
