@@ -136,7 +136,7 @@ const Contact = () => {
                     };
 
                     try {
-                      const response = await fetch('https://kalasurya-backend.onrender.com//api/contact', {
+                      const response = await fetch('https://kalasurya-backend.onrender.com/api/contact', {
                         method: 'POST',
                         headers: {
                           'Content-Type': 'application/json',
