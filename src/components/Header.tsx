@@ -19,7 +19,6 @@ const Header = () => {
     <header className="bg-card shadow-soft fixed w-full top-0 z-50 transition-smooth">
       <div className="container mx-auto px-4 py-4 lg:px-8 lg:py-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center absolute left-1/2 transform -translate-x-1/2 md:static md:left-auto md:transform-none">
           {/* Logo */}
           <div className="flex items-center">
             <a href="/" className="flex items-center">
@@ -34,7 +33,6 @@ const Header = () => {
               </h1>
             </a>
           </div>
-        </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8 lg:space-x-6">
