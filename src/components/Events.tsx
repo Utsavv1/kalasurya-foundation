@@ -19,14 +19,14 @@ const Events = () => {
     },
     {
       id: 2,
-      title: "Joint Family Award Ceremoney Season - 7",
-      date: "May 10, 2026",
-      time: "3:00 PM - 6:00 PM",
-      location: "Tagor Hall,Ahmedabad",
-      description: "If you're living in joint family with more then 20 members register your name and we will falicitate your family.",
-      capacity: "45 family",
+      title: "Senior Citizen's Picnic",
+      date: "November 4, 2025",
+      time: "5:00 AM - 1:00 AM",
+      location: "Statue Of Unity",
+      description: "One day picnic with senior citizens to entertain them.",
+      capacity: "70 Persons",
       status: "Registration Open",
-      type: "Award Ceremoney",
+      type: "Picnic",
       featured: false
     },
     {
@@ -43,14 +43,14 @@ const Events = () => {
     },
     {
       id: 4,
-      title: "Senior Citizen's Picnic",
-      date: "November 4, 2025",
-      time: "5:00 AM - 1:00 AM",
-      location: "Statue Of Unity",
-      description: "One day picnic with senior citizens to entertain them.",
-      capacity: "70 Persons",
+      title: "Joint Family Award Ceremoney Season - 7",
+      date: "May 10, 2026",
+      time: "3:00 PM - 6:00 PM",
+      location: "Tagor Hall,Ahmedabad",
+      description: "If you're living in joint family with more then 20 members register your name and we will falicitate your family.",
+      capacity: "45 family",
       status: "Registration Open",
-      type: "Picnic",
+      type: "Award Ceremoney",
       featured: false
     }
   ];
