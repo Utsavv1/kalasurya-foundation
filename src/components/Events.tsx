@@ -185,7 +185,50 @@ const Events = () => {
                       >
                         {event.status === 'Registration Open' ? 'Register Now' : 'Learn More'}
                       </Button>
-                      <Button variant="outline" size="sm" className="w-full">
+                      {/* 👇 ONLY ADDED onClick — NO OTHER CHANGES */}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full"
+                        type="button"
+                        onClick={() => {
+                          // Format date for Google Calendar (convert to YYYYMMDDTHHMMSS)
+                          const formatDateForCalendar = (dateStr, timeStr) => {
+                            const monthMap = {
+                              January: "01", February: "02", March: "03", April: "04",
+                              May: "05", June: "06", July: "07", August: "08",
+                              September: "09", October: "10", November: "11", December: "12"
+                            };
+
+                            // Extract first date (start date) from range like "September 17 to 21, 2025"
+                            const [monthName, dayPart] = dateStr.split(' ');
+                            const day = dayPart.split(',')[0].padStart(2, '0');
+                            const year = dateStr.split(', ')[1] || new Date().getFullYear().toString();
+
+                            // Extract time (assume "9:00 AM" → "090000")
+                            let [time, modifier] = timeStr.split(' ');
+                            let [hour, minute] = time.split(':');
+                            hour = parseInt(hour);
+                            if (modifier === 'PM' && hour < 12) hour += 12;
+                            if (modifier === 'AM' && hour === 12) hour = 0;
+                            const hourStr = hour.toString().padStart(2, '0');
+                            const minuteStr = minute || '00';
+
+                            return `${year}${monthMap[monthName]}${day}T${hourStr}${minuteStr}00`;
+                          };
+
+                          const startDate = formatDateForCalendar(event.date, event.time.split(' - ')[0]);
+                          const endDate = formatDateForCalendar(event.date, event.time.split(' - ')[1]);
+
+                          const title = encodeURIComponent(event.title);
+                          const description = encodeURIComponent(event.description);
+                          const location = encodeURIComponent(event.location);
+
+                          const googleUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${description}&location=${location}`;
+
+                          window.open(googleUrl, '_blank');
+                        }}
+                      >
                         Add to Calendar
                       </Button>
                     </div>
