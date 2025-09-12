@@ -27,7 +27,7 @@ const Header = () => {
                 alt="Kalasurya Foundation Logo"
                 className="h-16 w-16 mr-2 lg:h-14 lg:w-14"
               />
-              <h1 className="text-4xl font-bold text-primary lg:text-3xl">
+              <h1 className="text-4 font-bold text-primary lg:text-4xl">
                 Kalasurya Foundation
               </h1>
             </a>

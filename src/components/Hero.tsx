@@ -3,7 +3,8 @@ import heroImage from "@/assets/hero-foundation.jpg";
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    // 👇 ONLY CHANGED: Updated className to add responsive padding — NO OTHER CHANGES
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-8 lg:pt-12">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
