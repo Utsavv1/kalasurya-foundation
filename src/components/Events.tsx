@@ -15,7 +15,7 @@ const Events = () => {
       capacity: "1200+ participants",
       status: "Registration Open",
       type: "Workshop",
-      featured: true
+      featured: false
     },
     {
       id: 2,

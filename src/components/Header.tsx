@@ -19,13 +19,14 @@ const Header = () => {
     <header className="bg-card shadow-soft fixed w-full top-0 z-50 transition-smooth">
       <div className="container mx-auto px-4 py-4 lg:px-8 lg:py-3">
         <div className="flex items-center justify-between">
+          <div className="flex items-center absolute left-1/2 transform -translate-x-1/2 md:static md:left-auto md:transform-none">
           {/* Logo */}
           <div className="flex items-center">
             <a href="/" className="flex items-center">
               <img
                 src=" https://kalasuryafoundation.org/images/kalasurya_logo.png    "
                 alt="Kalasurya Foundation Logo"
-                className="h-16 w-16 mr-2 lg:h-14 lg:w-14"
+                className="h-16 w-16 mr-2 lg:h-14 lg:w-14 mt-1"
               />
               {/* 👇 ONLY CHANGED: Added text-3xl md:text-4xl — NO OTHER CHANGES */}
               <h1 className="text-3xl md:text-4xl font-bold text-primary lg:text-4xl">
@@ -33,6 +34,7 @@ const Header = () => {
               </h1>
             </a>
           </div>
+        </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8 lg:space-x-6">
