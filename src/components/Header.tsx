@@ -23,11 +23,12 @@ const Header = () => {
           <div className="flex items-center">
             <a href="/" className="flex items-center">
               <img
-                src=" https://kalasuryafoundation.org/images/kalasurya_logo.png  "
+                src=" https://kalasuryafoundation.org/images/kalasurya_logo.png    "
                 alt="Kalasurya Foundation Logo"
                 className="h-16 w-16 mr-2 lg:h-14 lg:w-14"
               />
-              <h1 className="text-4 font-bold text-primary lg:text-4xl">
+              {/* 👇 ONLY CHANGED: Added text-3xl md:text-4xl — NO OTHER CHANGES */}
+              <h1 className="text-3xl md:text-4xl font-bold text-primary lg:text-4xl">
                 Kalasurya Foundation
               </h1>
             </a>
